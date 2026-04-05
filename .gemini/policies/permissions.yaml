@@ -1,0 +1,15 @@
+rules:
+  - toolName:
+      - "read_file"
+      - "write_file"
+      - "replace"
+      - "list_directory"
+      - "glob"
+      - "grep_search"
+      - "codebase_investigator"
+    decision: "allow"
+    priority: 100
+  - toolName:
+      - "run_shell_command"
+    decision: "ask_user"
+    priority: 50

@@ -1,0 +1,45 @@
+# Advisory permissions for CODEX agent
+version: "1.0"
+agent: CODEX
+mode: advisory  # cannot override macros safety and TPCP rules
+
+tpcp:
+  savepoint: ASK
+  final: ASK
+
+commit_policy: ASK
+push_policy: ASK
+
+scan_exclude:
+  - .git/**
+  - node_modules/**
+  - dist/**
+  - build/**
+  - .next/**
+  - out/**
+  - vendor/**
+  - tmp/**
+  - coverage/**
+
+write_rules:
+  OBS:
+    allowed_paths:
+      - AGENTS/CODEX-OBS/**
+      - AGENTS/AGENTS.md
+      - AGENTS/CODEX_CONTEXT.md
+  EXE:
+    allowed_paths:
+      - AGENTS/CODEX-EXE/**
+      - AGENTS/AGENTS.md
+      - AGENTS/CODEX-EXE/solutions/ack/**
+      - checklist.md
+      - docs/**
+      - wiki.md
+      - README.md
+
+# Dangerous operations that must never be run automatically
+blocked_commands:
+  - "git reset --hard"
+  - "rm -rf /"
+  - "find / -delete"
+

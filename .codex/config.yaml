@@ -1,0 +1,18 @@
+# Configuration for CODEX agent in this repository
+config_version: "1.0"
+agent: CODEX
+
+# Default role if not specified via prompt or macro invocation
+role_default: OBS
+
+# Language and output preferences
+language: ru
+output_style: concise
+
+# Load order hint (macros read .codex before prompt.md)
+read_first:
+  - .codex/config.yaml
+  - .codex/permissions.yaml
+
+# Notes: This file is advisory. Role constraints and TPCP safety rules
+# from macros.md always take precedence unless prompt.md explicitly allows otherwise.
