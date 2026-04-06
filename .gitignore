@@ -9,3 +9,16 @@ npm-debug.log
 # Временные файлы
 *.tmp
 *.swp
+
+# Local machine-specific agent settings
+.claude/settings.local.json
+.gemini/settings.local.json
+
+# Runtime session artifacts (template repo keeps placeholders only)
+AGENTS/*/logs/*
+!AGENTS/*/logs/.gitkeep
+AGENTS/*/solutions/*
+!AGENTS/*/solutions/.gitkeep
+!AGENTS/*/solutions/ack/
+AGENTS/*/solutions/ack/*
+!AGENTS/*/solutions/ack/.gitkeep

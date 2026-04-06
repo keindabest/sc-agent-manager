@@ -1,5 +1,3 @@
 # Prompt
 
-Reset: 2026-04-05 20:46:41 +0100
-
-Разверни пожалуйста проект на гите
+No active task. Add instructions here.

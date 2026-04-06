@@ -1,6 +1,6 @@
 # GEMINI CONTEXT
 
-Reset: 2026-04-05 20:46:41 +0100
+Reset: TEMPLATE_BASELINE
 
 ## Current Task
 (empty; ready for next session)

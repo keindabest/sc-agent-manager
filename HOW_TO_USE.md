@@ -1,47 +1,54 @@
 # HOW_TO_USE
 
-Этот репозиторий предназначен для ручной оркестрации трех языковых моделей при работе над задачами проекта:
+This repository is designed for manual orchestration of three language models while working on project tasks:
 - `CLAUDE`
 - `CODEX`
 - `GEMINI`
 
-Пользователь выступает оркестратором: ставит задачу, выбирает роль агента, проверяет предложения и подтверждает внедрение.
+The user acts as the orchestrator: defines tasks, chooses agent roles, reviews proposals, and confirms implementation.
 
-Источник правил и макросов: `macros.md`.
+Source of macro rules and behavior: `macros.md`.
 
-## Что где лежит
+## Template Baseline
+This repository is meant to stay clean in version control:
 
-- `prompt.md` — текущая задача от пользователя.
-- `AGENTS/<MODEL>-OBS/solutions/` — предложения (analysis/proposal) от наблюдателя.
-- `AGENTS/<MODEL>-EXE/solutions/` — планы и результаты внедрения.
-- `AGENTS/<MODEL>-EXE/solutions/ack/` — ACK-файлы подтверждения внедрения.
-- `AGENTS/AGENTS.md` — реестр активностей агентов.
+- keep `prompt.md` in a neutral "No active task" state
+- keep `AGENTS/*/logs/` and `AGENTS/*/solutions/` empty except `.gitkeep`
+- avoid committing machine-specific local settings
 
-## Команды (назначение + пример)
+## Where Everything Lives
 
-| Команда | Назначение | Пример |
+- `prompt.md` - current task from the user.
+- `AGENTS/<MODEL>-OBS/solutions/` - observer proposals (analysis/proposal).
+- `AGENTS/<MODEL>-EXE/solutions/` - implementation plans and results.
+- `AGENTS/<MODEL>-EXE/solutions/ack/` - ACK files confirming implementation.
+- `AGENTS/AGENTS.md` - agent activity registry.
+
+## Commands (Purpose + Example)
+
+| Command | Purpose | Example |
 |---|---|---|
-| `prompt` | Синхронизировать агента с актуальным `prompt.md` и контекстом; при необходимости выбрать роль (OBS/EXE). | После правки `prompt.md`: отправьте агенту `prompt`. |
-| `tellmeobs` | Запустить режим OBS: скан репозитория и формирование proposal в `AGENTS/<MODEL>-OBS/solutions/`. | `tellmeobs` |
-| `tellmeexe` | Запустить режим EXE: собрать `STATUS: PROPOSED`, сделать `master_plan`, выполнить внедрение после согласования. | `tellmeexe` |
-| `upd` | Синхронизировать состояние: `git status`/diff, LastActive, проверка ACK/статусов proposal. | `upd` |
-| `cleanup` | Подготовить чистую сессию: очистка logs/solutions, reset context-файлов, reset `prompt.md`. | `cleanup` |
+| `prompt` | Sync agent context with the latest `prompt.md`; select role (OBS/EXE) if needed. | After editing `prompt.md`, send: `prompt` |
+| `tellmeobs` | Start OBS mode: scan the repository and produce proposals in `AGENTS/<MODEL>-OBS/solutions/`. | `tellmeobs` |
+| `tellmeexe` | Start EXE mode: collect `STATUS: PROPOSED`, build `master_plan`, and implement after approval. | `tellmeexe` |
+| `upd` | Synchronize state: `git status`/diff, LastActive, ACK checks, proposal status sync. | `upd` |
+| `cleanup` | Prepare a clean session: clear logs/solutions, reset context files, reset `prompt.md`. | `cleanup` |
 
-## Рекомендуемый рабочий цикл
+## Recommended Workflow
 
-1. Запишите задачу в `prompt.md`.
-2. Запустите `upd` (или `prompt`) для синхронизации состояния.
-3. Запустите `tellmeobs` в одной или нескольких моделях.
-4. Проверьте proposals в `AGENTS/*-OBS/solutions/`.
-5. Выберите исполнителя и запустите `tellmeexe`.
-6. Проверьте изменения в проекте.
-7. При завершении итерации выполните `cleanup` (опционально).
+1. Write the task in `prompt.md`.
+2. Run `upd` (or `prompt`) to synchronize state.
+3. Run `tellmeobs` in one or more models.
+4. Review proposals in `AGENTS/*-OBS/solutions/`.
+5. Choose an executor and run `tellmeexe`.
+6. Validate the implemented changes.
+7. Optionally run `cleanup` at the end of the iteration.
 
-## Мини-сценарий
+## Mini Scenario
 
-1. Вы обновили `prompt.md` новой задачей.
-2. Отправили `prompt` агенту `CODEX`.
-3. Отправили `tellmeobs` в `CLAUDE` и `GEMINI`.
-4. Выбрали лучший proposal.
-5. Отправили `tellmeexe` агенту `CODEX` для реализации.
-6. Проверили результат и решили, нужен ли `cleanup`.
+1. You update `prompt.md` with a new task.
+2. You send `prompt` to `CODEX`.
+3. You run `tellmeobs` in `CLAUDE` and `GEMINI`.
+4. You select the best proposal.
+5. You run `tellmeexe` in `CODEX` for implementation.
+6. You verify the result and decide whether `cleanup` is needed.

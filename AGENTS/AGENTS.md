@@ -1,5 +1,5 @@
 # AGENTS REGISTRY
-Last Cleanup: 2026-03-28 12:49 +0100
+Last Cleanup: TEMPLATE_BASELINE
 ---
-Agent: CLAUDE-OBS | Role: OBSERVER | Status: PROPOSAL_READY | LastActive: 2026-04-05 21:20 +0100
-Agent: CLAUDE-EXE | Role: EXECUTOR | Status: READY_TO_DEPLOY | LastActive: 2026-04-05 21:35 +0100
+# Add active agents during runtime. Example:
+# Agent: CODEX-OBS | Role: OBSERVER | Status: COLLECTING_DATA | LastActive: YYYY-MM-DD HH:mm +0100
