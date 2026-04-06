@@ -183,4 +183,5 @@ See [LICENSE](LICENSE).
 
 ## Author
 
-Daniil Kein
+Daniel Kein  
+https://www.linkedin.com/in/daniel-kein/
